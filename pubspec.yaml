@@ -10,7 +10,10 @@ dependencies:
   # Sate Management
   get_cli: ^1.8.4
   get: 4.6.6
+
+  # Local Database
   get_storage: ^2.1.1
+  shared_preferences: ^2.2.2
 
   # Network
   http: ^1.2.0

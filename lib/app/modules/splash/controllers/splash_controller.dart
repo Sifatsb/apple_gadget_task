@@ -1,8 +1,10 @@
+import 'package:apple_gadget_task/app/data/global_data/global_variable_controller.dart';
 import 'package:apple_gadget_task/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SplashController extends GetxController with GetTickerProviderStateMixin  {
+class SplashController extends GetxController with GetTickerProviderStateMixin {
   @override
   void onInit() {
     _animation();
@@ -27,5 +29,16 @@ class SplashController extends GetxController with GetTickerProviderStateMixin  
   }
 
   void navNextPage() async {
-    Get.offAndToNamed(Routes.LOGIN);
-}}
+    await 3000.milliseconds.delay();
+    final sharedPref = await SharedPreferences.getInstance();
+    Get.find<GlobalRxVariableController>().token.value = sharedPref.getString('token');
+    print('::: ${Get.find<GlobalRxVariableController>().token.value}');
+    if (Get.find<GlobalRxVariableController>()
+        .token.value != null) {
+      Get.offAndToNamed(Routes.HOME);
+    } else {
+      Get.offAndToNamed(Routes.LOGIN);
+    }
+  }
+
+}
