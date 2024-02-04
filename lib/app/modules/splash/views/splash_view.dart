@@ -1,3 +1,4 @@
+import 'package:apple_gadget_task/app/data/constants/image_path.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,15 +10,46 @@ class SplashView extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'SplashView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: Stack(
+        children: <Widget>[
+          Positioned.fill(
+            child: Container(
+              height: Get.height,
+              width: Get.width,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(ImagePath.splashBackground),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: SizedBox(
+              height: Get.height / 1,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  AnimatedBuilder(
+                    animation: controller.animation!,
+                    builder: (context, child) {
+                      return Container(
+                        height: controller.animation?.value,
+                        width: controller.animation?.value,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: ExactAssetImage(ImagePath.appLogo),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

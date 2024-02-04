@@ -7,8 +7,15 @@ environment:
 
 dependencies: 
   cupertino_icons: ^1.0.2
+  # Sate Management
   get_cli: ^1.8.4
   get: 4.6.6
+  get_storage: ^2.1.1
+
+  # Network
+  http: ^1.2.0
+
+
   flutter: 
     sdk: flutter
 
@@ -17,6 +24,11 @@ dev_dependencies:
   flutter_test: 
     sdk: flutter
 
+dependency_overrides:
+  http: ^0.13.5
+
 flutter: 
   uses-material-design: true
 
+  assets:
+    - assets/images/
